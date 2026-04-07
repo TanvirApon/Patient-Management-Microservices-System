@@ -16,6 +16,8 @@ import java.util.UUID;
 @Entity
 @Data
 @RequiredArgsConstructor
+
+// Main Model for the Patient Entity
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
