@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+// Return Patient Response
 public class PatientResponseDTO {
     private String id;
     private String name;

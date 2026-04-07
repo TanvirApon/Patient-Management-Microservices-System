@@ -1,0 +1,11 @@
+### Post Request for Patient
+POST http://localhost:4000/patient
+Content-Type: application/json
+
+{
+  "name": "Nusrat",
+  "email": "nusrat@gmail.com",
+  "address": "Sylhet",
+  "dateOfBirth": "1999-03-30",
+  "registeredDate": "2026-04-07"
+}
