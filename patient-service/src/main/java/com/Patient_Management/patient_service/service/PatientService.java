@@ -27,29 +27,31 @@ public class PatientService {
         return patientResponseDTO;
     }
 
-    // Find Patient By ID
+    // Find Patient By ID Function
     public PatientResponseDTO getPatientById (UUID id){
       Optional<Patient> patients = patientRepository.findById(id);
       PatientResponseDTO patientResponseDTO = PatientMapper.toDTO(patients.orElseThrow(()-> new RuntimeException("Patient not found!")));
       return patientResponseDTO;
     }
 
-    // Create Patient Request
+    // Create Patient Request Function
     public PatientResponseDTO createPatient(PatientRequestDTO requestDTO){
 
-        if(patientRepository.exitsByEmail(requestDTO.getEmail())){
+        if(patientRepository.existsByEmail(requestDTO.getEmail())){
             throw new EmailAlreadyExitsException("A patient with this email already exists" + requestDTO.getEmail());
         }
         Patient savedPatient = patientRepository.save(PatientMapper.toEntity(requestDTO));
         return PatientMapper.toDTO(savedPatient);
     }
 
-    // Update Patient Request
+    // Update Patient Request Function
     public PatientResponseDTO updatePatient(UUID id, PatientRequestDTO requestDTO){
         Patient patient =  patientRepository.findById(id).orElseThrow(()-> new PatientNotFoundException("Patient not found with this Id: " + id));
 
-        if(patientRepository.exitsByEmail(requestDTO.getEmail())){
-            throw new EmailAlreadyExitsException("A patient with this email already exists" + requestDTO.getEmail());
+        if (patientRepository.existsByEmailAndIdNot(requestDTO.getEmail(), id)) {
+            throw new EmailAlreadyExitsException(
+                    "A patient with this email " + "already exists"
+                            + requestDTO.getEmail());
         }
         patient.setName(requestDTO.getName());
         patient.setAddress(requestDTO.getAddress());
@@ -58,6 +60,11 @@ public class PatientService {
 
         Patient updatedPatient  = patientRepository.save(patient);
         return PatientMapper.toDTO(updatedPatient);
+    }
+
+    // Delete Patient Request Function
+    public void deletePatient(UUID id) {
+        patientRepository.deleteById(id);
     }
 
 }

@@ -1,0 +1,11 @@
+### Update a Patient
+PUT http://localhost:4000/patient/81c7db8a-ac03-4ad0-b9e5-8a21cb186493
+Content-Type: application/json
+
+{
+  "name": "Tanvir Updated",
+  "email": "tanvir123@gmail.com",
+  "address": "Dhaka",
+  "dateOfBirth": "1999-03-30",
+  "registeredDate": "2026-04-07"
+}
