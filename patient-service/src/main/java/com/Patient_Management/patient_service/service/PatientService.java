@@ -50,7 +50,7 @@ public class PatientService {
 
         if (patientRepository.existsByEmailAndIdNot(requestDTO.getEmail(), id)) {
             throw new EmailAlreadyExitsException(
-                    "A patient with this email " + "already exists"
+                    "A patient with this email " + "already exists: "
                             + requestDTO.getEmail());
         }
         patient.setName(requestDTO.getName());

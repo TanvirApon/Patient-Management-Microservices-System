@@ -1,0 +1,10 @@
+
+
+GRPC localhost:9001/BillingService/CreateBillingAccount
+Content-Type: application/json
+
+{
+  "patientId" : "323e4567-e89b-12d3-a456-426614174015",
+  "name" : "Rahim Uddin",
+  "email" : "rahim.uddin@gmail.com"
+}
