@@ -10,9 +10,8 @@ RUN mvn clean package -DskipTests
 FROM eclipse-temurin:21-jdk
 WORKDIR /app
 
-COPY --from=builder /app/target/billing-service-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=builder /app/target/analytics-service-0.0.1-SNAPSHOT.jar app.jar
 
-EXPOSE 4001
-EXPOSE 9001
+EXPOSE 4002
 
 ENTRYPOINT ["java", "-jar", "app.jar"]

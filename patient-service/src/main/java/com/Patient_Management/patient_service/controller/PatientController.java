@@ -7,6 +7,7 @@ import com.Patient_Management.patient_service.service.PatientService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import jakarta.validation.groups.Default;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import java.util.UUID;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +17,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/patient")
 public class PatientController {
 
-    public final PatientService patientService;
+
+    private final PatientService patientService;
+
+    public PatientController(PatientService patientService) {
+        this.patientService = patientService;
+    }
 
     @GetMapping
     @Operation(summary="Get Patients")
